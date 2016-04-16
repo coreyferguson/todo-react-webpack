@@ -1,6 +1,7 @@
 
 'use strict';
 
+let open = require('open');
 let express = require('express');
 let app = express();
 let path = require('path');
@@ -16,4 +17,5 @@ app.use(express.static('test/manual/client'));
 
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!');
+  open('http://localhost:3000/', 'chromium-browser');
 });

@@ -16,6 +16,10 @@ Todo application for learning React and related technologies.
   - [ ] Functional
 - [ ] Redux
 
+## Usage
+
+Manual testing: `grunt test:manual` & navigate to [http://localhost:3000/](http://localhost:3000/)
+
 ## Techologies
 
 Technology | Description
