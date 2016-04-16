@@ -5,14 +5,11 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
-    shell: {
-      testManual: {
-        command: 'node test/manual/server'
-      }
-    }
+    shell: require('./config/shell'),
+    webpack: require('./config/webpack')
   });
 
-  grunt.registerTask('default', []);
-  grunt.registerTask('test:manual', ['shell:testManual']);
+  grunt.registerTask('default', ['webpack:build']);
+  grunt.registerTask('test:manual', ['webpack:build', 'shell:testManual']);
 
 };

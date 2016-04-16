@@ -14,6 +14,7 @@ app.get('/', function (req, res) {
 });
 
 app.use(express.static('test/manual/client'));
+app.use(express.static('dist/'));
 
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!');

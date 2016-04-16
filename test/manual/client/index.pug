@@ -2,6 +2,10 @@
 html
   head
     title todo
+    script(
+      src='https://cdnjs.cloudflare.com/ajax/libs/require.js/2.2.0/require.min.js'
+      data-main='requirejs-main'
+    )
   body
     h1 todo
-    script(src='index.js', type='text/javascript')
+    div#todo-component

@@ -5,13 +5,15 @@ Todo application for learning React and related technologies.
 
 ## TODO
 
-- [ ] Express
-  - [ ] JSX/Jade Rendering
+- [x] Express
+  - [x] JSX/Jade Rendering
   - [ ] GET, PUT, POST, DELETE /api/todo
-- [ ] Grunt
+- [x] Grunt
+  - [ ] [jscs](https://github.com/jscs-dev/grunt-jscs)
 - [ ] Webpack
 - [ ] Babel
 - [ ] Testing
+  - [x] Manual
   - [ ] Unit
   - [ ] Functional
 - [ ] Redux
