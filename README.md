@@ -10,6 +10,7 @@ Todo application for learning React and related technologies.
   - [ ] GET, PUT, POST, DELETE /api/todo
 - [ ] Grunt
 - [ ] Webpack
+- [ ] Babel
 - [ ] Testing
   - [ ] Unit
   - [ ] Functional

@@ -4,5 +4,9 @@
   "description": "Todo application for learning React and related technologies.",
   "main": "index.js",
   "author": "Corey Ferguson <corey.t.ferguson@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "express": "^4.13.4",
+    "pug": "^2.0.0-alpha3"
+  }
 }
