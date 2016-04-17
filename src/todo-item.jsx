@@ -6,8 +6,18 @@ export default class TodoItem extends React.Component {
 
   render() {
     return (
-      <li>{this.props.children}</li>
+      <li>
+        <input type='checkbox' />
+        <input type='text' value={this.props.children.text} />
+        <button type='button' onClick={this.delete.bind(this)}>Delete</button>
+      </li>
     );
+  }
+
+  delete() {
+    if (this.props.delete != null) {
+      this.props.delete(this.props.children.id)
+    }
   }
 
 }

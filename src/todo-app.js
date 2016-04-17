@@ -15,7 +15,12 @@ export default class TodoApp {
   }
 
   render(todos) {
-    ReactDOM.render(React.createElement(TodoComponent, {todos: todos}), this._elements);
+    ReactDOM.render(
+      React.createElement(TodoComponent, {
+        todos: todos,
+        add: this.add.bind(this),
+        delete: this.delete.bind(this)
+      }), this._elements);
   }
 
   initialize() {
@@ -23,9 +28,29 @@ export default class TodoApp {
     // fetch todos in parallel
     this._service.all().then(todos => {
       this.render(todos);
-    }).catch(function(err) {
+    }).catch(err => {
       console.error('error:', err);
     });
+  }
+
+  add() {
+    this._service.add().then(() => {
+      return this._service.all();
+    }).then(todos => {
+      this.render(todos);
+    }).catch(err => {
+      console.error('error:', err);
+    });
+  }
+
+  delete(id) {
+    this._service.delete(id).then(() => {
+      return this._service.all();
+    }).then(todos => {
+      this.render(todos);
+    }).catch(err => {
+      console.error('error:', err);
+    })
   }
 
 }

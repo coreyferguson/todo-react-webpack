@@ -17,6 +17,8 @@ Todo application for learning React and related technologies.
   - [ ] Unit
   - [ ] Functional
 - [ ] Redux
+- [ ] CSS
+- [ ] [Namespaced components](https://facebook.github.io/react/docs/jsx-in-depth.html#namespaced-components)
 
 ## Usage
 
