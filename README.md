@@ -10,8 +10,8 @@ Todo application for learning React and related technologies.
   - [ ] GET, PUT, POST, DELETE /api/todo
 - [x] Grunt
   - [ ] [jscs](https://github.com/jscs-dev/grunt-jscs)
-- [ ] Webpack
-- [ ] Babel
+- [x] Webpack
+- [x] Babel
 - [ ] Testing
   - [x] Manual
   - [ ] Unit

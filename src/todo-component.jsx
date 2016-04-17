@@ -1,10 +1,18 @@
 
+'use strict';
+
 import React from 'react';
+import TodoList from './todo-list.jsx';
 
 export default class TodoComponent extends React.Component {
+
   render() {
     return (
-      <h1>Hello world!</h1>
+      <div>
+        <h1>todo</h1>
+        <TodoList todos={this.props.todos} />
+      </div>
     );
   }
+
 }

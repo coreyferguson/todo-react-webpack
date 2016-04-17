@@ -6,7 +6,7 @@ module.exports = {
     entry: './src/index.js',
     output: {
       path: 'dist/',
-      filename: 'bundle.js',
+      filename: 'todo-app.js',
       libraryTarget: 'amd'
     },
     module: {
