@@ -14,9 +14,8 @@ export default class TodoItem extends React.Component {
   render() {
     return (
       <li>
-        <input type='checkbox' />
         <input type='text' value={this.state.text} onChange={this.change.bind(this)} />
-        <button type='button' onClick={this.delete.bind(this)}>Delete</button>
+        <button type='button' onClick={this.handleDelete.bind(this)}>Delete</button>
       </li>
     );
   }
@@ -25,9 +24,10 @@ export default class TodoItem extends React.Component {
     this.setState({text: event.target.value});
   }
 
-  delete() {
-    if (this.props.delete != null) {
-      this.props.delete(this.props.children.id)
+  handleDelete() {
+    // notify owner to delete this item
+    if (this.props.onDelete != null) {
+      this.props.onDelete(this.props.children.id)
     }
   }
 

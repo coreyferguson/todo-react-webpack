@@ -14,40 +14,36 @@ export default class TodoApp {
     this.initialize();
   }
 
-  render(todos) {
-    ReactDOM.render(
-      React.createElement(TodoComponent, {
-        todos: todos,
-        add: this.add.bind(this),
-        delete: this.delete.bind(this)
-      }), this._elements);
-  }
-
   initialize() {
-    this.render([]); // render empty list immediately
+    this._component = ReactDOM.render(
+      React.createElement(TodoComponent, {
+        todos: [],
+        onAdd: this.handleAdd.bind(this),
+        onDelete: this.handleDelete.bind(this)
+      }), this._elements);
     // fetch todos in parallel
     this._service.all().then(todos => {
-      this.render(todos);
+      this._component.setTodos(todos);
     }).catch(err => {
       console.error('error:', err);
     });
   }
 
-  add() {
+  handleAdd() {
     this._service.add().then(() => {
       return this._service.all();
     }).then(todos => {
-      this.render(todos);
+      this._component.setTodos(todos);
     }).catch(err => {
       console.error('error:', err);
     });
   }
 
-  delete(id) {
+  handleDelete(id) {
     this._service.delete(id).then(() => {
       return this._service.all();
     }).then(todos => {
-      this.render(todos);
+      this._component.setTodos(todos);
     }).catch(err => {
       console.error('error:', err);
     })
