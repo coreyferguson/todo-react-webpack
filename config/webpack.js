@@ -25,6 +25,7 @@ module.exports = {
       'react-dom',
       'bluebird',
       'superagent'
-    ]
+    ],
+    watch: true
   }
 };
