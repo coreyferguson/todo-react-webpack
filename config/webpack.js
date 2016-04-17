@@ -19,6 +19,12 @@ module.exports = {
           }
         }
       ]
-    }
+    },
+    externals: [
+      'react',
+      'react-dom',
+      'bluebird',
+      'superagent'
+    ]
   }
 };
