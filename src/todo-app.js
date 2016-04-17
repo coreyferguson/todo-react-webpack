@@ -3,15 +3,14 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import TodoService from './todo-service';
 import TodoComponent from './todo-component.jsx';
-import request from 'superagent';
-import Promise from 'bluebird';
 
 export default class TodoApp {
 
   constructor(elements) {
     this._elements = elements;
-    this.render([]);
+    this._service = new TodoService();
     this.initialize();
   }
 
@@ -20,19 +19,12 @@ export default class TodoApp {
   }
 
   initialize() {
-    this.getTodos().then(todos => {
+    this.render([]); // render empty list immediately
+    // fetch todos in parallel
+    this._service.all().then(todos => {
       this.render(todos);
     }).catch(function(err) {
       console.error('error:', err);
-    });
-  }
-
-  getTodos() {
-    return new Promise((resolve, reject) => {
-      resolve([
-        { text: "todo-1" },
-        { text: "todo-2" }
-      ]);
     });
   }
 
