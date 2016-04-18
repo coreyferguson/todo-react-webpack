@@ -25,11 +25,9 @@ export default class TodoService {
 
   add() {
     return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        let todo = { id: this._nextId++, text: '' };
-        this._todos.push(todo);
-        resolve(todo);
-      }, this._mockAjaxRequestTimeout);
+      let todo = { id: this._nextId++, text: '' };
+      this._todos.push(todo);
+      resolve(todo);
     });
   }
 
