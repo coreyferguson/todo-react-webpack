@@ -3,6 +3,7 @@
 
 import React from 'react';
 import TodoList from './todo-list.jsx';
+import './todo-component.scss';
 
 export default class TodoComponent extends React.Component {
 
@@ -12,7 +13,7 @@ export default class TodoComponent extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className='todo-component'>
         <h1>todo</h1>
         <TodoList
             todos={this.props.todos}
