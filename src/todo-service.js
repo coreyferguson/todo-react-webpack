@@ -8,11 +8,8 @@ export default class TodoService {
 
   constructor() {
     this._mockAjaxRequestTimeout = 500;
-    this._nextId = 0;
-    this._todos = [
-      { id: this._nextId++, text: "todo-1" },
-      { id: this._nextId++, text: "todo-2" }
-    ]
+    this._nextId = 1;
+    this._todos = [];
   }
 
   all() {
@@ -23,23 +20,28 @@ export default class TodoService {
     });
   }
 
-  add() {
+  add(todo) {
     return new Promise((resolve, reject) => {
-      let todo = { id: this._nextId++, text: '' };
-      this._todos.push(todo);
-      resolve(todo);
+      this._todos.push({
+        id: this._nextId++,
+        text: todo.text
+      });
+      resolve(this._todos[this._todos.length-1]);
     });
   }
 
   delete(id) {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
+        let todoDeleted = false;
         this._todos.forEach((todo, index) => {
           if (todo.id === id) {
             this._todos.splice(index, 1);
+            todoDeleted = true;
           }
         });
-        resolve();
+        if (todoDeleted) resolve();
+        else reject(new Error('No such todo exists with id: ' + id));
       }, this._mockAjaxRequestTimeout);
     });
   }

@@ -1,62 +1,107 @@
 var fs = require('fs');
 var path = require('path');
 
-module.exports = {
-  basePath: '..',
+module.exports = function(config) {
+  config.set({
 
-  //////////////////////
-  // karma extensions //
-  //////////////////////
+    basePath: '..',
+    logLevel: config.LOG_INFO,
 
-  // order is important for frameworks
-  frameworks: [
-    'mocha',
-    'chai-sinon',
-    'chai-as-promised',
-    'chai'
-  ],
-  files: [
-    'test/support/globals.js',
-    'test/integration/**/*.js',
-    'test/unit/**/*.js'
-  ],
-  exclude: [],
+    //////////////////////
+    // karma extensions //
+    //////////////////////
 
-  //////////////////////////
-  // server configuration //
-  //////////////////////////
+    // order is important for frameworks
+    frameworks: [
+      'mocha',
+      'chai-sinon',
+      'chai-as-promised',
+      'chai'
+    ],
+    files: [
+      'test/support/globals.js',
+      'test/integration/**/*.js',
+      'test/unit/**/*.js'
+    ],
+    exclude: [],
 
-  hostname: 'localhost',
-  protocol: 'http',
-  port: 9876,
+    ///////////////////
+    // preprocessors //
+    ///////////////////
 
-  ////////////////////////
-  // testing / coverage //
-  ////////////////////////
+    preprocessors: {
+      'test/integration/**/*.js': ['webpack', 'sourcemap'],
+      'test/unit/**/*.js': ['webpack', 'sourcemap'],
+      'test/support/**/*.js': ['webpack', 'sourcemap']
+    },
 
-  reporters: ['progress', 'coverage'],
-  coverageReporter: {
-    dir: 'coverage/',
-    reporters: [
-      { type: 'html', subdir: 'coverage-html' },
-      { type: 'text', subdir: '.', file: 'coverage-detail.txt' },
-      { type: 'text-summary', subdir: '.', file: 'coverage-summary.txt' }
-    ]
-  },
+    /////////////
+    // webpack //
+    /////////////
 
-  //////////
-  // misc //
-  //////////
+    webpack: {
+      devtool: 'inline-source-map',
+      module: {
+        preLoaders: [{
+          loader: 'babel-loader',
+          test: /\.js$/,
+          query: {
+            presets: ['react', 'es2015']
+          }
+        }, {
+          loader: 'isparta',
+          test: /\.js$/,
+          exclude: /(test|node_modules)\//
+        }]
+      },
 
-  colors: true,
-  autoWatch: true,
-  concurrency: Infinity,
-  webpackMiddleware: { noInfo: true },
+      // *optional* isparta options: istanbul behind isparta will use it
+      isparta: {
+        embedSource: true,
+        noAutoWrap: true,
+        // these babel options will be passed only to isparta and not to babel-loader
+        babel: {
+          presets: ['react', 'es2015']
+        }
+      }
+    },
 
-  ///////////////
-  // launchers //
-  ///////////////
+    //////////////////////////
+    // server configuration //
+    //////////////////////////
 
-  browsers: ['Chrome']
+    hostname: 'localhost',
+    protocol: 'http',
+    port: 9876,
 
+    ////////////////////////
+    // testing / coverage //
+    ////////////////////////
+
+    reporters: ['progress', 'coverage'],
+    coverageReporter: {
+      dir: 'coverage/',
+      reporters: [
+        { type: 'html', subdir: 'coverage-html' },
+        { type: 'text', subdir: '.', file: 'coverage-detail.txt' },
+        { type: 'text-summary', subdir: '.', file: 'coverage-summary.txt' }
+      ]
+    },
+
+    //////////
+    // misc //
+    //////////
+
+    colors: true,
+    autoWatch: true,
+    concurrency: Infinity,
+    webpackMiddleware: { noInfo: true },
+
+    ///////////////
+    // launchers //
+    ///////////////
+
+    browsers: ['Chrome']
+
+  });
 };

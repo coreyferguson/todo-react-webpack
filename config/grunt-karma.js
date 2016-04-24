@@ -1,9 +1,12 @@
 
 module.exports = {
+  options: {
+    configFile: 'config/karma.js'
+  },
   continuous: {
-    configFile: 'config/karma-continuous.js'
+    singleRun: false
   },
   single: {
-    configFile: 'config/karma-single.js'
+    singleRun: true
   }
 };
