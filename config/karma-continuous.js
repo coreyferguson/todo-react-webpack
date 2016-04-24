@@ -26,7 +26,18 @@ module.exports = function(config) {
      * source and line numbers are reported when errors occur. This is necessary because
      * of: https://github.com/gotwarlost/istanbul/issues/212
      */
-    webpack: { devtool: 'inline-source-map' }
+    webpack: {
+      devtool: 'inline-source-map',
+      module: {
+        loaders: [{
+          loader: 'babel-loader',
+          test: /\.js$/,
+          query: {
+            presets: ['es2015']
+          }
+        }]
+      }
+    }
 
   });
   config.set(configOverride);

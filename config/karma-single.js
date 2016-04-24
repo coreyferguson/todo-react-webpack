@@ -12,9 +12,9 @@ module.exports = function(config) {
     ///////////////////
 
     preprocessors: {
-      'test/integration/**/*.js': ['webpack'],
-      'test/unit/**/*.js': ['webpack'],
-      'test/support/**/*.js': ['webpack']
+      'test/integration/**/*.js': ['webpack', 'sourcemap'],
+      'test/unit/**/*.js': ['webpack', 'sourcemap'],
+      'test/support/**/*.js': ['webpack', 'sourcemap']
     },
 
     /////////////
@@ -22,11 +22,19 @@ module.exports = function(config) {
     /////////////
 
     webpack: {
+      devtool: 'inline-source-map',
       module: {
-        postLoaders: [{
+        loaders: [{
+          loader: 'babel-loader',
           test: /\.js$/,
-          exclude: /(test|node_modules)\//,
-          loader: 'istanbul-instrumenter'
+          query: {
+            presets: ['es2015']
+          }
+        }],
+        postLoaders: [{
+          loader: 'istanbul-instrumenter',
+          test: /\.js$/,
+          exclude: /(test|node_modules)\//
         }]
       }
     }

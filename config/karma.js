@@ -8,16 +8,6 @@ module.exports = {
   // karma extensions //
   //////////////////////
 
-  plugins: [
-    require('karma-chai'),
-    require('karma-chai-as-promised'),
-    require('karma-chai-sinon'),
-    require('karma-chrome-launcher'),
-    require('karma-coverage'),
-    require('karma-mocha'),
-    require('karma-sourcemap-loader'),
-    require('karma-webpack')
-  ],
   // order is important for frameworks
   frameworks: [
     'mocha',
