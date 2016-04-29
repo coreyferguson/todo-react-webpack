@@ -1,3 +1,6 @@
 node_modules/
-dist/
 coverage/
+
+# temporarily ignore for ease of checkin
+# TODO: remove this entry before publish
+dist/

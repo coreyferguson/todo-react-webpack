@@ -8,6 +8,6 @@ require.config({
   }
 });
 
-require(['todo-app'], function(TodoApp) {
-  new TodoApp( document.getElementById('todo-component') );
+require(['todo'], function(TodoController) {
+  new TodoController( document.getElementById('todo-component') );
 });

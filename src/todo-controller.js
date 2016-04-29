@@ -6,7 +6,7 @@ import ReactDOM from 'react-dom';
 import TodoService from './todo-service';
 import TodoComponent from './todo-component.jsx';
 
-export default class TodoApp {
+export default class TodoController {
 
   constructor(elements) {
     this._elements = elements;

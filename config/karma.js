@@ -39,32 +39,7 @@ module.exports = function(config) {
     // webpack //
     /////////////
 
-    webpack: {
-      devtool: 'inline-source-map',
-      module: {
-        preLoaders: [{
-          loader: 'babel-loader',
-          test: /\.js$/,
-          query: {
-            presets: ['react', 'es2015']
-          }
-        }, {
-          loader: 'isparta',
-          test: /\.js$/,
-          exclude: /(test|node_modules)\//
-        }]
-      },
-
-      // *optional* isparta options: istanbul behind isparta will use it
-      isparta: {
-        embedSource: true,
-        noAutoWrap: true,
-        // these babel options will be passed only to isparta and not to babel-loader
-        babel: {
-          presets: ['react', 'es2015']
-        }
-      }
-    },
+    webpack: require('./webpack'),
 
     //////////////////////////
     // server configuration //

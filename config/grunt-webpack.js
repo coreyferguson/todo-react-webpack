@@ -1,36 +1,24 @@
 
-var path = require('path');
+'use strict';
+
+let webpackConfig = require('./webpack');
+let overrideConfig = {
+  entry: './src/index.js',
+  externals: [
+    'react',
+    'react-dom',
+    'bluebird',
+    'superagent'
+  ],
+  watch: true
+};
 
 module.exports = {
-  build: {
-    entry: './src/index.js',
+  build: Object.assign({}, webpackConfig, overrideConfig, {
     output: {
       path: 'dist/',
-      filename: 'todo-app.js',
+      filename: 'todo.js',
       libraryTarget: 'amd'
-    },
-    module: {
-      loaders: [
-        {
-          loader: 'babel',
-          test: /\.jsx?$/,
-          query: {
-            presets: ['react', 'es2015']
-          }
-        },
-        {
-          test: /\.scss$/,
-          loaders: ['style', 'css?sourceMap', 'sass?sourceMap']
-        }
-      ]
-    },
-    externals: [
-      'react',
-      'react-dom',
-      'bluebird',
-      'superagent'
-    ],
-    devtool: 'source-map',
-    watch: true
-  }
+    }
+  })
 };
