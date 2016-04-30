@@ -2,7 +2,7 @@
 'use strict';
 
 import React from 'react';
-import TodoItem from './todo-item.jsx';
+import TodoItem from './todo-item-view.jsx';
 
 export default ({todos}) => {
   const todoItems = todos.map(

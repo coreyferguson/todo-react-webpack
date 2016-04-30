@@ -3,7 +3,7 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import TodoView from './todo-view.jsx';
+import View from './todo-view.jsx';
 
 export default connect(
   null,
@@ -14,4 +14,4 @@ export default connect(
       }
     }
   }
-)(TodoView)
+)(View)

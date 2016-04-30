@@ -2,7 +2,7 @@
 'use strict';
 
 import deepFreeze from 'deep-freeze';
-import todoReducer from '../../src/todo-list-reducer.js';
+import todoReducer from '../../src/todo/reducer/todo-list-reducer.js';
 
 describe('todo-reducer', () => {
 

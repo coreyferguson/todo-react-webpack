@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-export default class TodoItem extends React.Component {
+export default class TodoItemView extends React.Component {
 
   constructor(props) {
     super(props);

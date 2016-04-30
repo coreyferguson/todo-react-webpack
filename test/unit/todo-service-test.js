@@ -1,7 +1,7 @@
 
 'use strict';
 
-import TodoService from '../../src/todo-service';
+import TodoService from '../../src/todo/service/todo-service';
 
 describe('todo-service', () => {
 
