@@ -3,50 +3,21 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import reducer from './todo-app-reducer';
 import TodoService from './todo-service';
-import TodoComponent from './todo-component.jsx';
+import TodoContainer from './todo-container.jsx';
 
 export default class TodoController {
 
-  constructor(elements) {
-    this._elements = elements;
-    this._service = new TodoService();
-    this.initialize();
-  }
-
-  initialize() {
-    this._component = ReactDOM.render(
-      React.createElement(TodoComponent, {
-        todos: [],
-        onAdd: this.handleAdd.bind(this),
-        onDelete: this.handleDelete.bind(this)
-      }), this._elements);
-    // fetch todos in parallel
-    this._service.all().then(todos => {
-      this._component.setTodos(todos);
-    }).catch(err => {
-      console.error('error:', err);
+  constructor(elements, store) {
+    let todoComponent = React.createElement(TodoContainer);
+    let provider = React.createElement(Provider, {
+      store: createStore(reducer),
+      children: todoComponent
     });
-  }
-
-  handleAdd() {
-    this._service.add().then(() => {
-      return this._service.all();
-    }).then(todos => {
-      this._component.setTodos(todos);
-    }).catch(err => {
-      console.error('error:', err);
-    });
-  }
-
-  handleDelete(id) {
-    this._service.delete(id).then(() => {
-      return this._service.all();
-    }).then(todos => {
-      this._component.setTodos(todos);
-    }).catch(err => {
-      console.error('error:', err);
-    })
+    ReactDOM.render(provider, elements);
   }
 
 }
