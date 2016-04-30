@@ -4,5 +4,5 @@ import { connect } from 'react-redux';
 import TodoListView from './todo-list-view.jsx';
 
 export default connect(
-  ({todos}) => { return {todos} }
+  (state) => state.todos
 )(TodoListView);

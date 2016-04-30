@@ -5,12 +5,60 @@ import React from 'react';
 import TodoList from './todo-list-container.jsx';
 import './todo.scss';
 
-export default ({onClick}) => {
-  return (
-    <div className='todo-component'>
-      <h1>todo</h1>
-      <TodoList />
-      <button type='button' onClick={onClick}> Add </button>
-    </div>
-  );
+export default class TodoView extends React.Component {
+
+  constructor(props) {
+    super(props);
+    if (this.props.onSubmit === undefined || this.props.onSubmit === null) {
+      throw new Error('`onSubmit` callback must be defined');
+    }
+    this.state = {
+      addTodoText: ''
+    };
+  }
+
+  render() {
+    return (
+      <div className='todo-component'>
+        <h1>todo</h1>
+
+        <div
+          style={{
+            display:
+              (this.props.todos.isFetching || this.props.todos.isAdding)
+              ? 'inline-block'
+              : 'none'
+          }}
+        >
+          Loading...
+        </div>
+
+        <TodoList />
+
+        <form onSubmit={this.handleAddTodoSubmit.bind(this)}>
+          <input
+            type='text'
+            value={this.state.addTodoText}
+            onChange={this.handleAddTodoText.bind(this)}
+            disabled={this.props.todos.isAdding}
+            ref='addTodoText'
+          />
+          <button type='submit'> Add </button>
+        </form>
+
+      </div>
+    );
+  }
+
+  handleAddTodoText(event) {
+    this.setState({addTodoText: event.target.value});
+  }
+
+  handleAddTodoSubmit(event) {
+    event.preventDefault();
+    this.props.onSubmit(this.state.addTodoText);
+    this.setState({addTodoText: ''});
+  }
+
 }
+

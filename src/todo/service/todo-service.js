@@ -22,11 +22,13 @@ export default class TodoService {
 
   add(todo) {
     return new Promise((resolve, reject) => {
-      this._todos.push({
-        id: this._nextId++,
-        text: todo.text
-      });
-      resolve(this._todos[this._todos.length-1]);
+      setTimeout(() => {
+        this._todos.push({
+          id: this._nextId++,
+          text: todo.text
+        });
+        resolve(this._todos[this._todos.length-1]);
+      }, this._mockAjaxRequestTimeout);
     });
   }
 

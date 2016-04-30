@@ -3,7 +3,7 @@
 
 import TodoService from '../../src/todo/service/todo-service';
 
-describe('todo-service', () => {
+describe('unit test todo-service', () => {
 
   let todoService;
 
