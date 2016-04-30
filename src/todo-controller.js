@@ -12,10 +12,10 @@ import TodoContainer from './todo-container.jsx';
 export default class TodoController {
 
   constructor(elements, store) {
-    let todoComponent = React.createElement(TodoContainer);
+    let todoContainer = React.createElement(TodoContainer);
     let provider = React.createElement(Provider, {
       store: createStore(reducer),
-      children: todoComponent
+      children: todoContainer
     });
     ReactDOM.render(provider, elements);
   }

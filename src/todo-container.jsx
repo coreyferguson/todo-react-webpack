@@ -2,28 +2,16 @@
 'use strict';
 
 import React from 'react';
-import TodoListContainer from './todo-list-container.jsx';
-import './todo-component.scss';
+import { connect } from 'react-redux';
+import TodoView from './todo-view.jsx';
 
-export default class TodoContainer extends React.Component {
-
-  render() {
-    const store = this.context.store;
-    return (
-      <div className='todo-component'>
-        <h1>todo</h1>
-        <TodoListContainer />
-        <button
-            type='button'
-            onClick={() => store.dispatch({ type: 'ADD', todo: {} }) }>
-          Add
-        </button>
-      </div>
-    );
+export default connect(
+  null,
+  (dispatch) => {
+    return {
+      onClick: () => {
+        dispatch({ type: 'ADD', todo: {} });
+      }
+    }
   }
-
-}
-
-TodoContainer.contextTypes = {
-    store: React.PropTypes.object
-};
+)(TodoView)
