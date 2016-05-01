@@ -3,24 +3,11 @@
 
 Todo application for learning React and related technologies.
 
-## TODO
-
-- [x] Express
-  - [x] JSX/Jade Rendering
-  - [ ] GET, PUT, POST, DELETE /api/todo
-- [x] Grunt
-  - [ ] [jscs](https://github.com/jscs-dev/grunt-jscs)
-- [x] Webpack
-- [x] Babel
-- [ ] Testing
-  - [x] Manual
-  - [ ] Unit
-  - [ ] Functional
-- [ ] Redux
-- [ ] CSS
-- [ ] [Namespaced components](https://facebook.github.io/react/docs/jsx-in-depth.html#namespaced-components)
-
 ## Usage
+
+Build and test: `grunt`
+
+Automated testing and watch file changes: `grunt test`
 
 Manual testing: `grunt test:manual` & navigate to [http://localhost:3000/](http://localhost:3000/)
 
@@ -32,3 +19,4 @@ Technology | Description
 [Redux](https://github.com/reactjs/redux) | Redux is a predictable state container for JavaScript apps.
 [Webpack](https://webpack.github.io/) | Module bundler; takes modules with dependencies and generates static assets representing those modules
 [Grunt](http://gruntjs.com/) | Task Runner
+[Karma](http://karma-runner.github.io/0.10/intro/how-it-works.html) | Automated testing in browser.
