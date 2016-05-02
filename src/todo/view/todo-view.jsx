@@ -3,6 +3,7 @@
 
 import React from 'react';
 import TodoList from './todo-list-container.jsx';
+import Loading from '../../util/loading-view.jsx';
 import './todo.scss';
 
 export default class TodoView extends React.Component {
@@ -19,16 +20,10 @@ export default class TodoView extends React.Component {
       <div className='todo-component'>
         <h1>todo</h1>
 
-        <div
-          style={{
-            display:
-              (this.props.todos.isFetching || this.props.todos.isAdding)
-              ? 'inline-block'
-              : 'none'
-          }}
-        >
-          Loading...
-        </div>
+        <Loading>{
+          this.props.todos.isFetching ||
+          this.props.todos.isAdding
+        }</Loading>
 
         <TodoList />
 
