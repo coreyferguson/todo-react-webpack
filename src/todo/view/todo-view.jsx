@@ -57,7 +57,17 @@ export default class TodoView extends React.Component {
   handleAddTodoSubmit(event) {
     event.preventDefault();
     this.props.onSubmit(this.state.addTodoText);
-    this.setState({addTodoText: ''});
+    this.setState({
+      addTodoText: ''
+    });
+    this._shouldFocusAddTodoTextWhenComplete = true;
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (!this.props.todos.isAdding && this._shouldFocusAddTodoTextWhenComplete) {
+      this._shouldFocusAddTodoTextWhenComplete = false;
+      this.refs.addTodoText.focus();
+    }
   }
 
 }
