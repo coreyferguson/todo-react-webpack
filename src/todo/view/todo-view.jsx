@@ -12,9 +12,6 @@ export default class TodoView extends React.Component {
     if (this.props.onSubmit === undefined || this.props.onSubmit === null) {
       throw new Error('`onSubmit` callback must be defined');
     }
-    this.state = {
-      addTodoText: ''
-    };
   }
 
   render() {
@@ -38,8 +35,6 @@ export default class TodoView extends React.Component {
         <form onSubmit={this.handleAddTodoSubmit.bind(this)}>
           <input
             type='text'
-            value={this.state.addTodoText}
-            onChange={this.handleAddTodoText.bind(this)}
             disabled={this.props.todos.isAdding}
             ref='addTodoText'
           />
@@ -50,17 +45,11 @@ export default class TodoView extends React.Component {
     );
   }
 
-  handleAddTodoText(event) {
-    this.setState({addTodoText: event.target.value});
-  }
-
   handleAddTodoSubmit(event) {
     event.preventDefault();
-    this.props.onSubmit(this.state.addTodoText);
-    this.setState({
-      addTodoText: ''
-    });
     this._shouldFocusAddTodoTextWhenComplete = true;
+    this.props.onSubmit(this.refs.addTodoText.value);
+    this.refs.addTodoText.value = '';
   }
 
   componentDidUpdate(prevProps, prevState) {
