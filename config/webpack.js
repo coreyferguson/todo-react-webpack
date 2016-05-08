@@ -5,6 +5,7 @@ module.exports = {
     preLoaders: [{
       loader: 'babel-loader',
       test: /\.jsx?$/,
+      exclude: /node_modules/,
       query: {
         presets: ['react', 'es2015']
       }

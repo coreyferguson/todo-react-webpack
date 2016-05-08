@@ -2,8 +2,8 @@
 'use strict';
 
 import {
-  ADD_TODO_REQUEST, ADD_TODO_RESPONSE,
-  FETCH_TODOS_REQUEST, FETCH_TODOS_RESPONSE
+  ADD_TODO_PENDING, ADD_TODO_FULFILLED,
+  FETCH_TODOS_PENDING, FETCH_TODOS_FULFILLED
 } from './todo-list-actions';
 
 export default (
@@ -15,19 +15,19 @@ export default (
   action
 ) => {
   switch (action.type) {
-    case FETCH_TODOS_REQUEST:
+    case FETCH_TODOS_PENDING:
       return Object.assign({}, state, { isFetching: true });
-    case FETCH_TODOS_RESPONSE:
+    case FETCH_TODOS_FULFILLED:
       return Object.assign({}, state,
-          { isFetching: false, items: [...action.todos] });
-    case ADD_TODO_REQUEST:
+          { isFetching: false, items: [...action.payload] });
+    case ADD_TODO_PENDING:
       return Object.assign({}, state, { isAdding: true });
-    case ADD_TODO_RESPONSE:
+    case ADD_TODO_FULFILLED:
       return Object.assign({}, state, {
         isAdding: false,
         items: [
           ...state.items,
-          action.todo
+          action.payload
         ]
       });
     default:

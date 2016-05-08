@@ -5,8 +5,8 @@ import deepFreeze from 'deep-freeze';
 import todoReducer from '../../src/todo/redux/todo-list-reducer';
 
 import {
-  ADD_TODO_REQUEST, ADD_TODO_RESPONSE,
-  FETCH_TODOS_REQUEST, FETCH_TODOS_RESPONSE
+  ADD_TODO_PENDING, ADD_TODO_FULFILLED,
+  FETCH_TODOS_PENDING, FETCH_TODOS_FULFILLED
 } from '../../src/todo/redux/todo-list-actions';
 
 describe('unit test todo-reducer', () => {
@@ -33,8 +33,8 @@ describe('unit test todo-reducer', () => {
       };
       deepFreeze(stateBefore);
       const stateAfter = todoReducer(stateBefore, {
-        type: ADD_TODO_REQUEST,
-        todo: { id: 1, text: 'text' }
+        type: ADD_TODO_PENDING,
+        payload: { id: 1, text: 'text' }
       })
       expect(stateAfter).to.have.property('isAdding', true);
       expect(stateAfter).to.have.deep.property('items.length', 0);
@@ -47,8 +47,8 @@ describe('unit test todo-reducer', () => {
       };
       deepFreeze(stateBefore);
       const stateAfter = todoReducer(stateBefore, {
-        type: ADD_TODO_RESPONSE,
-        todo: { id: 2, text: 'text2' }
+        type: ADD_TODO_FULFILLED,
+        payload: { id: 2, text: 'text2' }
       });
       expect(stateAfter).to.have.property('isAdding', false);
       expect(stateAfter.items.length).to.equal(2);
@@ -73,7 +73,7 @@ describe('unit test todo-reducer', () => {
       };
       deepFreeze(stateBefore);
       const stateAfter = todoReducer(stateBefore, {
-        type: FETCH_TODOS_REQUEST
+        type: FETCH_TODOS_PENDING
       });
       expect(stateAfter).to.have.deep.property('isFetching', true);
     });
@@ -85,8 +85,8 @@ describe('unit test todo-reducer', () => {
       };
       deepFreeze(stateBefore);
       const stateAfter = todoReducer(stateBefore, {
-        type: FETCH_TODOS_RESPONSE,
-        todos: [
+        type: FETCH_TODOS_FULFILLED,
+        payload: [
           { id: 1, text: 'text' },
           { id: 2, text: 'text2' }
         ]

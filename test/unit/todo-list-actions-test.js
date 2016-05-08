@@ -7,21 +7,15 @@ import deepFreeze from 'deep-freeze';
 describe('unit test todo-list-actions', () => {
 
   it('fetchTodos', () => {
-    const spy = sinon.spy();
-    const callback = fetchTodos();
-    return callback(spy).then(() => {
-      return expect(spy).to.have.been.calledTwice;
-    });
+    let action = fetchTodos();
+    expect(action.type).to.equal('FETCH_TODOS');
+    return expect(action.payload).to.eventually.eql([]);
   });
 
   it('addTodo', () => {
-    const spy = sinon.spy();
-    const callback = addTodo({text: 'text'});
-    return callback(spy).then(() => {
-      return [
-        expect(spy).to.have.been.calledTwice
-      ];
-    });
+    let action = addTodo({text: 'text'});
+    expect(action.type).to.equal('ADD_TODO');
+    return expect(action.payload).to.eventually.eql({ id: 1, text: 'text' });
   })
 
 });
