@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react';
 import CounterView from './CounterView.jsx';
-import ActionTypes from './CounterActionTypes';
+import * as ActionCreators from './CounterActionCreators';
 
 export default class CounterViewContainer extends Component {
 
@@ -31,9 +31,7 @@ export default class CounterViewContainer extends Component {
   }
 
   onIncrement() {
-    this.props.store.dispatch({
-      type: ActionTypes.INCREMENT
-    });
+    this.props.store.dispatch(ActionCreators.increment());
   }
 
 }
