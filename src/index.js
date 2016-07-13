@@ -6,5 +6,5 @@
  */
 
 'use strict';
-import TodoApp from './app/todo-app';
+import TodoApp from './app/TodoApp';
 module.exports = TodoApp;
